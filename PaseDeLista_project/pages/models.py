@@ -9,23 +9,23 @@ class Alumno(models.Model):
     def __str__(self):
         return self.nombre
 
-
-#modelo de clase
-class Clase(models.Model):
-    fecha_clase = models.DateField(auto_now_add = True)
-
-    def __str__(self):
-        return self.fecha_clase
-
 #modelo de materia
 class Materia(models.Model):
     nombre = models.CharField(max_length=50)
     periodo = models.CharField(max_length=30)
     year = models.IntegerField(default = 0)
-    clase = models.ForeignKey(Clase, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.nombre
+
+#modelo de clase
+class Clase(models.Model):
+    fecha_clase = models.DateField()
+    grupo = models.CharField(max_length=10)
+    materia = models.ForeignKey(Materia, on_delete=models.CASCADE, default=0)
+
+    def __str__(self):
+        return self.grupo
 
 #modelo de profesor
 class Profesor(models.Model):
@@ -43,4 +43,3 @@ class Asistencia(models.Model):
 
     def __str__(self):
         return self.fecha_asistencia
-

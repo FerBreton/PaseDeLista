@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View 
 from .models import *
-from .forms import AlumnoForm
+from .forms import *
 
 # Create your views here.
 
