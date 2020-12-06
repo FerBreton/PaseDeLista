@@ -8,44 +8,44 @@ from .forms import AlumnoForm
 
 class home(View):
     def get(self, request):
+        return render(request, 'index.html', {})
+
+class homeAlumno(View):
+    def get(self, request):
         alumnos = Alumno.objects.all()
 
-        #impresion en consola de los alumnos
-        for alu in alumnos:
-            print(alu)
-
         context = {'alumnos' : alumnos}
-        return render(request, 'index.html', context)
+        return render(request, 'alumno.html', context)
 
 class AlumnoAdd(View):
     def get(self, request):
         form = AlumnoForm()
         context = {'form' : form}
-        return render(request, 'alumno.html', context)
+        return render(request, 'alumnoup.html', context)
     
     def post(self, request):
         form = AlumnoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('homealu')
         else:
             form = AlumnoForm()
             context = {'form' : form}
-            return render(request, 'alumno.html', context)
+            return render(request, 'alumnoup.html', context)
 
 class AlumnoUpdate(View):
     def get(self, request, id):
         alumno = Alumno.objects.get(id=id)
         form = AlumnoForm(instance = alumno)
         context = {'form' : form}
-        return render(request, 'alumno.html', context)
+        return render(request, 'alumnoup.html', context)
     
     def post(self, request, id):
         alumno = Alumno.objects.get(id=id)
         form = AlumnoForm(request.POST, instance = alumno)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('homealu')
         else:
             context = {'form' : form}
-            return render(request, 'alumno.html', context)
+            return render(request, 'alumnoup.html', context)

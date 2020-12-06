@@ -3,13 +3,13 @@
 
 <html>
     <head>
-        <title>Pase de Lista</title>
+        <title>Alumno</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href = "/">Mi app web </a>
+        <nav class="navbar navbar-light" style="background-color: #ffe8d6;">
+            <a class="navbar-brand" href = "/">Pase de lista </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -19,21 +19,10 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="{% url 'alumno' %}">Alumnos</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"></a>
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Profesores</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                   <a class="nav-link disabled" href="#">Disabled</a>
                 </li>
               </ul>
@@ -42,16 +31,22 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
             </div>
-          </nav>
-            
+        </nav>
+        <br>
         <div class="container">
-            <h4>Edita al alumno</h4>
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_ul }}
-                <button type="submit" class="btn btn-primary">Guardar alumno</button>
-            </form>
-            
+          <h4>
+            Alumnos
+          </h4>
+          {% for alu in alumnos %}
+              <u1>
+                  <li>
+                      <a href="{% url 'alu_update' alu.id %}">{{ alu }}</a>
+                  </li>
+              </u1>
+          {% endfor %}
+          <div>
+              <a class="btn btn-dark" href="{% url 'alu_add' %}">Añadir alumno</a>
+          </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
