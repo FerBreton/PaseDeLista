@@ -1,51 +1,51 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View 
-#from .models import Publication, Autor, Comentario 
-#from .forms import PublicationForm
+from .models import *
+from .forms import AlumnoForm
 
 # Create your views here.
 
 class home(View):
     def get(self, request):
-        publicaciones = Publication.objects.all()
+        alumnos = Alumno.objects.all()
 
-        #impresion en consola de las publicaciones
-        for pub in publicaciones:
-            print(pub)
+        #impresion en consola de los alumnos
+        for alu in alumnos:
+            print(alu)
 
-        context = {'publicaciones' : publicaciones}
+        context = {'alumnos' : alumnos}
         return render(request, 'index.html', context)
 
-class PublicationAdd(View):
+class AlumnoAdd(View):
     def get(self, request):
-        form = PublicationForm()
+        form = AlumnoForm()
         context = {'form' : form}
-        return render(request, 'publication.html', context)
+        return render(request, 'alumno.html', context)
     
     def post(self, request):
-        form = PublicationForm(request.POST)
+        form = AlumnoForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')
         else:
-            form = PublicationForm()
+            form = AlumnoForm()
             context = {'form' : form}
-            return render(request, 'publication.html', context)
+            return render(request, 'alumno.html', context)
 
-class PublicationUpdate(View):
+class AlumnoUpdate(View):
     def get(self, request, id):
-        publicacion = Publication.objects.get(id=id)
-        form = PublicationForm(instance = publicacion)
+        alumno = Alumno.objects.get(id=id)
+        form = AlumnoForm(instance = alumno)
         context = {'form' : form}
-        return render(request, 'publication.html', context)
+        return render(request, 'alumno.html', context)
     
     def post(self, request, id):
-        publicacion = Publication.objects.get(id=id)
-        form = PublicationForm(request.POST, instance = publicacion)
+        alumno = Alumno.objects.get(id=id)
+        form = AlumnoForm(request.POST, instance = alumno)
         if form.is_valid():
             form.save()
             return redirect('home')
         else:
             context = {'form' : form}
-            return render(request, 'publication.html', context)
+            return render(request, 'alumno.html', context)

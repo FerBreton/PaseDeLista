@@ -9,7 +9,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href = "/">Pase de Lista </a>
+            <a class="navbar-brand" href = "/">Mi app web </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -20,7 +20,7 @@
                   <a class="nav-link" href="{% url 'alumno' %}">Alumnos</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Acerca de</a>
+                  <a class="nav-link" href="#"></a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,19 +45,13 @@
           </nav>
             
         <div class="container">
-            <h4>
-                Alumnos
-            </h4>
-            {% for alu in alumnos %}
-                <u1>
-                    <li>
-                        <a href="{% url 'alu_update' alu.id %}">{{ alu }}</a>
-                    </li>
-                </u1>
-            {% endfor %}
-            <div>
-                <a class="btn btn-dark" href="{% url 'alu_add' %}">Añadir alumno</a>
-            </div>
+            <h4>Edita al alumno</h4>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_ul }}
+                <button type="submit" class="btn btn-primary">Guardar alumno</button>
+            </form>
+            
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
