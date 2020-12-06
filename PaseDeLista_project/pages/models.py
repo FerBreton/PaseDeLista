@@ -39,7 +39,7 @@ class Profesor(models.Model):
 class Asistencia(models.Model):
     clase = models.ForeignKey(Clase, on_delete=models.CASCADE)
     alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
-    fecha_asistencia = models.DateField(auto_now_add = True)
+    fecha_asistencia = models.DateField()
 
     def __str__(self):
         return self.fecha_asistencia
