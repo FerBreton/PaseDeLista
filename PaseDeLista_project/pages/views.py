@@ -49,3 +49,43 @@ class AlumnoUpdate(View):
         else:
             context = {'form' : form}
             return render(request, 'alumnoup.html', context)
+
+class homeProfesor(View):
+    def get(self, request):
+        profesores = Profesor.objects.all()
+
+        context = {'profesores' : profesores}
+        return render(request, 'profesor.html', context)
+
+class ProfesorAdd(View):
+    def get(self, request):
+        form = ProfesorForm()
+        context = {'form' : form}
+        return render(request, 'profesorup.html', context)
+    
+    def post(self, request):
+        form = ProfesorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('homepro')
+        else:
+            form = ProfesorForm()
+            context = {'form' : form}
+            return render(request, 'profesorup.html', context)
+
+class ProfesorUpdate(View):
+    def get(self, request, id):
+        profesor = Profesor.objects.get(id=id)
+        form = ProfesorForm(instance = profesor)
+        context = {'form' : form}
+        return render(request, 'profesorup.html', context)
+    
+    def post(self, request, id):
+        profesor = Profesor.objects.get(id=id)
+        form = ProfesorForm(request.POST, instance = profesor)
+        if form.is_valid():
+            form.save()
+            return redirect('homepro')
+        else:
+            context = {'form' : form}
+            return render(request, 'profesorup.html', context)
