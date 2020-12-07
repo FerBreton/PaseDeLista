@@ -3,7 +3,7 @@
 
 <html>
     <head>
-        <title>Clase</title>
+        <title>Registro de asistencia</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
     </head>
@@ -41,17 +41,17 @@
         <br>
         <div class="container">
           <h4>
-            Clases
+            Registro de asistencia
           </h4>
-          {% for cla in clases %}
+          {% for asi in asistencias %}
               <u1>
                   <li>
-                      <a href="{% url 'cla_update' cla.id %}">{{ cla }}</a>
+                      <a href="{% url 'asi_update' asi.id %}">{{ asi }}</a>
                   </li>
               </u1>
           {% endfor %}
           <div>
-              <a class="btn btn-dark" href="{% url 'cla_add' %}">Añadir clase</a>
+              <a class="btn btn-dark" href="{% url 'asi_add' %}">Añadir registro</a>
           </div>
         </div>
 

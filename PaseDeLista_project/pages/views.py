@@ -170,3 +170,42 @@ class ClaseUpdate(View):
             context = {'form' : form}
             return render(request, 'claseup.html', context)
 
+class homeAsistencia(View):
+    def get(self, request):
+        asistencias = Asistencia.objects.all()
+
+        context = {'asistencias' : asistencias}
+        return render(request, 'asistencia.html', context)
+
+class AsistenciaAdd(View):
+    def get(self, request):
+        form = AsistenciaForm()
+        context = {'form' : form}
+        return render(request, 'asistenciaup.html', context)
+    
+    def post(self, request):
+        form = AsistenciaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('homeasi')
+        else:
+            form = AsistenciaForm()
+            context = {'form' : form}
+            return render(request, 'asistenciaup.html', context)
+
+class AsistenciaUpdate(View):
+    def get(self, request, id):
+        asistencia = Asistencia.objects.get(id=id)
+        form = AsistenciaForm(instance = asistencia)
+        context = {'form' : form}
+        return render(request, 'asistenciaup.html', context)
+    
+    def post(self, request, id):
+        asistencia = Asistencia.objects.get(id=id)
+        form = AsistenciaForm(request.POST, instance = asistencia)
+        if form.is_valid():
+            form.save()
+            return redirect('homeasi')
+        else:
+            context = {'form' : form}
+            return render(request, 'asistenciaup.html', context)

@@ -42,4 +42,4 @@ class Asistencia(models.Model):
     fecha_asistencia = models.DateField()
 
     def __str__(self):
-        return self.fecha_asistencia
+        return self.alumno.nombre
