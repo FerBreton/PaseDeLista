@@ -3,7 +3,7 @@
 
 <html>
     <head>
-        <title>Alumno</title>
+        <title>Materia</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
     </head>
@@ -35,17 +35,17 @@
         <br>
         <div class="container">
           <h4>
-            Alumnos
+            Materias
           </h4>
-          {% for alu in alumnos %}
+          {% for mat in materias %}
               <u1>
                   <li>
-                      <a href="{% url 'alu_update' alu.id %}">{{ alu }}</a>
+                      <a href="{% url 'mat_update' mat.id %}">{{ mat }}</a>
                   </li>
               </u1>
           {% endfor %}
           <div>
-              <a class="btn btn-dark" href="{% url 'alu_add' %}">Añadir alumno</a>
+              <a class="btn btn-dark" href="{% url 'mat_add' %}">Añadir materia</a>
           </div>
         </div>
 

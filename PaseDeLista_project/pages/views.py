@@ -89,3 +89,43 @@ class ProfesorUpdate(View):
         else:
             context = {'form' : form}
             return render(request, 'profesorup.html', context)
+
+class homeMateria(View):
+    def get(self, request):
+        materias = Materia.objects.all()
+
+        context = {'materias' : materias}
+        return render(request, 'materia.html', context)
+
+class MateriaAdd(View):
+    def get(self, request):
+        form = MateriaForm()
+        context = {'form' : form}
+        return render(request, 'materiaup.html', context)
+    
+    def post(self, request):
+        form = MateriaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('homemat')
+        else:
+            form = MateriaForm()
+            context = {'form' : form}
+            return render(request, 'materiaup.html', context)
+
+class MateriaUpdate(View):
+    def get(self, request, id):
+        materia = Materia.objects.get(id=id)
+        form = MateriaForm(instance = materia)
+        context = {'form' : form}
+        return render(request, 'materiaup.html', context)
+    
+    def post(self, request, id):
+        materia = Materia.objects.get(id=id)
+        form = MateriaForm(request.POST, instance = materia)
+        if form.is_valid():
+            form.save()
+            return redirect('homemat')
+        else:
+            context = {'form' : form}
+            return render(request, 'materiaup.html', context)
