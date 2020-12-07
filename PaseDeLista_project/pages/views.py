@@ -129,3 +129,44 @@ class MateriaUpdate(View):
         else:
             context = {'form' : form}
             return render(request, 'materiaup.html', context)
+
+class homeClase(View):
+    def get(self, request):
+        clases = Clase.objects.all()
+
+        context = {'clases' : clases}
+        return render(request, 'clase.html', context)
+
+class ClaseAdd(View):
+    def get(self, request):
+        form = ClaseForm()
+        context = {'form' : form}
+        return render(request, 'claseup.html', context)
+    
+    def post(self, request):
+        form = ClaseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('homecla')
+        else:
+            form = ClaseForm()
+            context = {'form' : form}
+            return render(request, 'claseup.html', context)
+
+class ClaseUpdate(View):
+    def get(self, request, id):
+        clase = Clase.objects.get(id=id)
+        form = ClaseForm(instance = clase)
+        context = {'form' : form}
+        return render(request, 'claseup.html', context)
+    
+    def post(self, request, id):
+        clase = Clase.objects.get(id=id)
+        form = ClaseForm(request.POST, instance = clase)
+        if form.is_valid():
+            form.save()
+            return redirect('homecla')
+        else:
+            context = {'form' : form}
+            return render(request, 'claseup.html', context)
+

@@ -3,7 +3,7 @@
 
 <html>
     <head>
-        <title>Alumno</title>
+        <title>Clase</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
     </head>
@@ -37,11 +37,11 @@
         </nav>
         
         <div class="container">
-          <h4>Añade o edita al alumno</h4>
+          <h4>Añade o edita la clase</h4>
           <form method="POST">
               {% csrf_token %}
               {{ form.as_ul }}
-              <button type="submit" class="btn btn-primary">Guardar alumno</button>
+              <button type="submit" class="btn btn-primary">Guardar clase</button>
           </form> 
         </div>
 

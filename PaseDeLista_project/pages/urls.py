@@ -12,5 +12,8 @@ urlpatterns = [
     path('profesor/<int:id>/', ProfesorUpdate.as_view(), name = "pro_update"),
     path('materia/home', homeMateria.as_view(), name = "homemat"),
     path('materia/add', MateriaAdd.as_view(), name = "mat_add"),
-    path('materia/<int:id>/', MateriaUpdate.as_view(), name = "mat_update")
+    path('materia/<int:id>/', MateriaUpdate.as_view(), name = "mat_update"),
+    path('clase/home', homeClase.as_view(), name = "homecla"),
+    path('clase/add', ClaseAdd.as_view(), name = "cla_add"),
+    path('clase/<int:id>/', ClaseUpdate.as_view(), name = "cla_update")
 ]

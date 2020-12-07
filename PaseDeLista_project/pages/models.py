@@ -20,7 +20,7 @@ class Materia(models.Model):
 
 #modelo de clase
 class Clase(models.Model):
-    fecha_clase = models.DateField()
+    fecha_clase = models.CharField(max_length=50)
     grupo = models.CharField(max_length=10)
     materia = models.ForeignKey(Materia, on_delete=models.CASCADE, default=0)
 
